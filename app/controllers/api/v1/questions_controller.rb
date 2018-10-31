@@ -1,7 +1,8 @@
 class Api::V1::QuestionsController < ApplicationController 
     before_action :get_question, only: [:show, :update, :destroy]
     def index 
-        @questions = Question.all.shuffle 
+        @questions = Question.all.shuffle
+        # @questions.each do |q| q.answers.shuffle! end 
         render json: @questions
     end
 

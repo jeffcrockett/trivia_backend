@@ -43,6 +43,11 @@ def get_questions(category, id)
     end
 end
 
+def format_items(query, replacement) 
+    Question.where('content like ?', "%#{query}%").each do |q| q.update(content: q.content.gsub(query, replacement))
+    Answer.where('content like ?', "%#{query}%").each do |a| a.update(content: a.content.gsub(query, replacement))
+end
+
 get_questions(science, 17)
 get_questions(sports, 21)
 get_questions(books, 10)
